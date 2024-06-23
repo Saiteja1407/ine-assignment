@@ -1,0 +1,17 @@
+.lesson-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/*  */
+.lesson-title{
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.lesson-container p{
+    margin: 1rem 0;
+}
+

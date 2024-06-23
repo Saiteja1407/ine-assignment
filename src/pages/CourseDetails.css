@@ -1,0 +1,67 @@
+.outer-container{
+    padding: 1rem;
+    text-align: center;
+    background-color: #a7abb0;
+
+}
+#course-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .lesson-links:hover{
+        transition: all 3ms ease;
+        cursor: pointer;
+        transform: scale(1.02);
+        color: rgb(77, 59, 179);
+    }
+}
+
+
+
+#course-description {
+    font-size: 16px;
+    margin: 1rem 0;
+}
+
+#tutor {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.container h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.lesson-links{
+    padding: 1rem;
+    margin:auto 1rem
+}
+
+.lesson-links:hover{
+    transition: all 3ms ease;
+    cursor: pointer;
+    transform: scale(1.02);
+    color: rgb(77, 59, 179);
+}
+
+
+
+
+

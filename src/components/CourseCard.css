@@ -1,0 +1,27 @@
+.course-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: auto;
+    width: 20rem;
+    height: 20rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+}
+
+.course-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.tutor-name {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
