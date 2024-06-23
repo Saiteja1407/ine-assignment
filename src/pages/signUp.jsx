@@ -1,7 +1,7 @@
 import React, { useState ,  useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [input,setInput] = useState({
@@ -94,12 +94,12 @@ const SignUp = () => {
                         >
                             Sign Up
                         </button>
-                        <a
+                        <Link
                             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                            href="/login"
+                            to="/login"
                         >
                             Already have an account? Log in
-                        </a>
+                        </Link>
                     </div>
                 </form>
             </div>

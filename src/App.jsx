@@ -31,7 +31,7 @@ function App() {
           <Route index element={<Catalog/>}/>
           <Route path='/courses/:courseId' element={<CourseDetails/>}/>
           <Route path='/courses/:courseId/:lessonId' element={<Lesson/>}/>
-          <Route path='/:id/profile' element={<ProfilePage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/:id/components' element={<EnrolledCourse/>}/>
           </Route>
           <Route path='*' element={<h1>404 Not Found</h1>}/>

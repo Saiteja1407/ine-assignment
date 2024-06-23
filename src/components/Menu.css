@@ -2,6 +2,7 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     background-color: #a7abb0;
     text-align: end;
+    border-radius: 1rem;
 }
 
 .links-container{
@@ -9,9 +10,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 20rem;
+    width: 18rem;
     gap: 1rem;
     padding: 0 0 1rem 0;
+    border-radius: 0.25rem; /* Provide a value for border-radius */
     /* background-color: #f8f9fa; */
     
 }

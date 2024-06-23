@@ -11,10 +11,12 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchEnrolledCourses = async() => {
             const base_url = import.meta.env.VITE_API_URL;
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-            // const response = await axios.get(`${base_url}/api/user/${id}/profile`);
-            console.log(response.data)
-            setEnrolledCourses(response.data);
+            const response = await axios.get(`${base_url}/api/enrollments`,{
+                headers:{
+                    'Authorization':localStorage.getItem('token')
+                }
+            });
+            setEnrolledCourses(response.data.data);
             setLoading(false);
         }
         fetchEnrolledCourses();
@@ -28,7 +30,10 @@ const ProfilePage = () => {
                 <h1 className='profile-page-title'>Enrolled Courses</h1>
                 {enrolledCourses.map((course) => (
                 // <h1>hello</h1>
-                     <EnrolledCourse {...course} />
+                <div key={course.id}>
+                    <EnrolledCourse course={course} />
+                </div>
+                     
                     
             ))}
                 </>

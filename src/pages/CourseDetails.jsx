@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CourseDetails.css';
 import ButtonComp from '../components/ButtonComp';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CourseDetails = () => {
@@ -11,6 +11,7 @@ const CourseDetails = () => {
     const [topics, setTopics] = useState([]);
     const [lessons, setLessons] = useState([]);
     const [Loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const handleClick = async (e) => {
         const base_url = import.meta.env.VITE_API_URL;
@@ -75,6 +76,17 @@ const CourseDetails = () => {
     
     const lessonsByTopic = groupLessonsByTopic(lessons);
 
+    const handleLinkClick = (lesson) =>{
+        if(isEnrolled==false){
+            alert('enroll to start learning!');
+            return;
+        }
+        else{
+            navigate(`/courses/${courseData.id}/${lesson.id}`)
+        }
+        
+    }
+
 
     return (
         <>
@@ -88,9 +100,8 @@ const CourseDetails = () => {
                     <h2>{topic.title}</h2>
                     <ul>
                         {lessonsByTopic[topic.id] && lessonsByTopic[topic.id].map(lesson => (
-                            <Link to={`/courses/${courseId}/${lesson.id}`} key={lesson.id}>
-                                <h3 className='lesson-links'>{lesson.name}</h3>
-                            </Link>
+                                <h3 key={lesson.id} onClick={()=>handleLinkClick(lesson)} className='lesson-links'>{lesson.name}</h3>
+                            
                         ))}
                     </ul>
                 </div>
