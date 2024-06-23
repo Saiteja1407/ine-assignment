@@ -25,15 +25,26 @@ const SignUp = () => {
         if(!captchaValue) alert('please verify the reCAPTCHA')
         else{
             const base_url = import.meta.env.VITE_API_URL;
-            console.log(`${base_url}/api/auth/verifyCaptcha`)
             const response = await axios.post(`${base_url}/api/auth/verifyCaptcha`, {captchaValue});
             const result = response.data;
             if(result.success){
-                const registerRes = await axios.post(`${base_url}/api/auth/register`, input);
-                console.log(registerRes)
-                const data = registerRes.data;
-                localStorage.setItem('token', registerRes.data.token);
-                navigate(`/`);
+                try {
+                    const registerRes = await axios.post(`${base_url}/api/auth/register`, input);
+                
+                    const data = registerRes.data;
+                    localStorage.setItem('token', registerRes.data.token);
+                    navigate(`/`);
+                } catch (error) {
+                    console.log(error.response.status)
+                    if(error.response.status === 409){
+                        alert('Email already exists');
+                        navigate('/login');
+                    }
+                    else{
+                        alert('Registration failed. Please try again');
+                    }
+                }
+                
             }
             else{
                 alert('reCAPTCHA verification failed');

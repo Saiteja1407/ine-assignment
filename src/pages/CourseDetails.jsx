@@ -16,7 +16,7 @@ const CourseDetails = () => {
     const handleClick = async (e) => {
         const base_url = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
-        const enrollingData = await axios.post(`${base_url}/api/enrolled/${courseId}`,{},{
+        const enrollingData = await axios.post(`${base_url}/api/enrollments`,{courseId:courseId},{
             headers:{
                 'Authorization':token
             }
@@ -33,6 +33,10 @@ const CourseDetails = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        if(!token){
+            alert(`unauthorized access, please login`);
+            navigate('/login');
+        }
         const base_url = import.meta.env.VITE_API_URL;
         console.log(`${base_url}/api/enrolled/${courseId}`)
         const checkEnrollment = async () => {
@@ -43,7 +47,7 @@ const CourseDetails = () => {
             });
             console.log(enrolledRes.data)
             if(enrolledRes.data.code==1) setIsEnrolled(true);
-            const response = await axios.get(`${base_url}/api/courses/${courseId}`,{
+            const response = await axios.get(`${base_url}/api/courses/${courseId}/content`,{
                 headers:{
                     'Authorization':token
                 }

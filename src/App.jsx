@@ -17,6 +17,7 @@ import Layout from './components/Layout'
 import ProfilePage from './pages/ProfilePage'
 import EnrolledCourse from './components/EnrolledCourse'
 import Lesson from './pages/Lesson'
+import NotFound from './pages/NotFound'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,9 +33,9 @@ function App() {
           <Route path='/courses/:courseId' element={<CourseDetails/>}/>
           <Route path='/courses/:courseId/:lessonId' element={<Lesson/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
-          <Route path='/:id/components' element={<EnrolledCourse/>}/>
+          <Route path='*' element={<NotFound/>}/>
           </Route>
-          <Route path='*' element={<h1>404 Not Found</h1>}/>
+          <Route path='/:id/components' element={<EnrolledCourse/>}/>
         </Routes>
       </BrowserRouter>
     </>

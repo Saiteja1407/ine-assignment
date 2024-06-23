@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar'
 import { Link } from 'react-router-dom'
 import ButtonComp from './ButtonComp'
 const EnrolledCourse = ({course}) => {
-  const width = course.completed_lessons/course.total_lessons * 100;
+  const width = Math.ceil(course.completed_lessons/course.total_lessons * 100);
   return (
     <div className='enrolled-course-container'>
       <h2 id='enrolled-title'>{course.course_title}</h2>
