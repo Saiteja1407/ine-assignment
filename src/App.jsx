@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import FormOuter from './components/FormOuter'
 import LandingPage from './pages/LandingPage'
 import Header from './components/Header'
+import CategoryFilter from './components/CategoryFilter'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/test' element={<Header/>}/>
+          <Route path='/test' element={<CategoryFilter/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/' element={<LandingPage/>}/>

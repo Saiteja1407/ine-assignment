@@ -13,12 +13,12 @@
 
 .progress-bar__bar {
     height: 100%;
-    background-color: #02852a;
+    background-color: #9c27b0;
     transition: width 0.3s ease-in-out;
 }
 
 .progress-bar__number {
-    font-size: 0.9rem;
-    color: #333;
+    font-size: 1rem;
+    font-weight: 700;
     text-align: center;
 }

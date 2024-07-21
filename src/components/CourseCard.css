@@ -1,17 +1,18 @@
 .course-card {
-    border: 1px solid #ccc;
-    padding: 20px;
     margin: auto;
     width: 20rem;
-    height: 20rem;
-    border: 1px solid #ccc;
     border-radius: .5rem;
+    box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.3);
+    transition: all 3ms ease;
+}
+
+.course-card:hover{
+    transform: scale(1.02);
 }
 
 .course-name {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .description {
@@ -20,8 +21,7 @@
 }
 
 .tutor-name {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
 }
 

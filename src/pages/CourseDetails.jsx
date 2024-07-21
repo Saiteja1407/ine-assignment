@@ -95,24 +95,26 @@ const CourseDetails = () => {
 
     return (
         <>
-        <div className='outer-container'>
-            <h1 id='course-title'>{courseData.title}</h1>
-            <p id='course-description'>{courseData.description}</p>
-            <h2 id='tutor'>Tutor: {courseData.instructor_name}</h2>
-        <div className='container'>
+        <div className='outer-container mx-0 md:mx-4 lg:mx-8'>
+            <div className='bg-slate-100 text-start px-0 md:px-4 lg:px-8'>
+                <h1 id='course-title'>{courseData.title}</h1>
+                <p id='course-description'>{courseData.description}</p>
+                <h2 id='tutor'>Tutor: {courseData.instructor_name}</h2>
+                {isEnrolled ? <h4>Start Learning</h4>:<span onClick={handleClick}><ButtonComp  title='Enroll Now'/></span>}
+            </div>
+        <div className='container w-full lg:w-3/4 rounded-2xl border-2 border-gray-200 overflow-hidden'>
         {topics.map(topic => (
                 <div key={topic.id}>
-                    <h2>{topic.title}</h2>
+                    <h2 className='bg-slate-100 border-b border-gray-300 py-2 px-4 lg:px-8'>{topic.title}</h2>
                     <ul>
                         {lessonsByTopic[topic.id] && lessonsByTopic[topic.id].map(lesson => (
-                                <h3 key={lesson.id} onClick={()=>handleLinkClick(lesson)} className='lesson-links'>{lesson.name}</h3>
+                                <h3 key={lesson.id} onClick={()=>handleLinkClick(lesson)} className='lesson-links border-b border-gray-200 px-4 lg:px-8'>{lesson.name}</h3>
                             
                         ))}
                     </ul>
                 </div>
             ))}
         </div>
-        {isEnrolled ? <h4>Start Learning</h4>:<span onClick={handleClick}><ButtonComp  title='Enroll Now'/></span>}
             
         </div>
         </>
@@ -120,27 +122,3 @@ const CourseDetails = () => {
 };
 
 export default CourseDetails;
-
-
-
-{/* <div className='left-container'>
-            <h3>Syllabus:</h3>
-            <ul>
-                {topics.length>0 &&topics.map((topic) => (
-                    <li key={topic.id}>{topic.title}</li>
-                ))}
-            </ul>
-            </div>
-            <div className='right-container'>
-            <h3>Lessons:</h3>
-            <ul>
-                {lessons.length>0 && lessons.map((lesson) => (
-                    <li key={lesson.id}>
-                        {lesson.name} 
-                    </li>
-                ))}
-            </ul>
-            <div className='button-gap'>
-                {isEnrolled ? <ButtonComp title='Start Learning'/> : <ButtonComp title='Enroll Now'/>}
-            </div>
-            </div> */}

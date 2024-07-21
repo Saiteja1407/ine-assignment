@@ -12,7 +12,7 @@ const InputComp = ({width = '100%', placeholder='', query, setQuery}) => {
                     padding: '10px',
                     margin: '10px',
                     width: '100%',
-                    border:'2px solid rgb(59 130 246',
+                    border:'2px solid rgb(156, 39, 176)',
                     borderRadius: '5px'
                 }}
                 value={query}

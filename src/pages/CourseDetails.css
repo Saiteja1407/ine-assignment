@@ -1,22 +1,12 @@
 .outer-container{
     padding: 1rem;
-    text-align: center;
-    background-color: #a7abb0;
-
 }
 #course-title{
     font-size: 24px;
     font-weight: bold;
     margin: 1rem 0;
 }
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 2rem;
-    width: 100%;
-    margin: 0 auto;
-}
+
 
 @media (max-width: 768px) {
     .container {
@@ -50,8 +40,7 @@
 }
 
 .lesson-links{
-    padding: 1rem;
-    margin:auto 1rem
+    padding: .5rem 0;
 }
 
 .lesson-links:hover{

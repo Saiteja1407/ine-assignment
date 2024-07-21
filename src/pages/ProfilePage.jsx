@@ -32,19 +32,22 @@ const ProfilePage = () => {
     return(
         <div>
             { Loading ? ( <h1>loading</h1> ): (
-               <>
-                <h1 className='profile-page-title'>Enrolled Courses</h1>
-                {enrolledCourses.map((course) => (
-                // <h1>hello</h1>
-                <div key={course.id}>
-                    <EnrolledCourse course={course} />
-                </div>
+                enrolledCourses && enrolledCourses.length === 0 ? (<h1>You didn't enroll to any course yet.</h1>):(
+                    <div className='items-center mt-4 lg:mt-8'>
+                        <div className='w-fit m-auto text- '>
+                        <h1 className='profile-page-title text-4xl'>Enrolled Courses</h1>
+                        {enrolledCourses.map((course) => (
+                            // <h1>hello</h1>
+                            <div key={course.id}>
+                                <EnrolledCourse course={course} />
+                            </div>
                      
-                    
-            ))}
-                </>
-            )
-            }
+                    ))}
+                    </div>
+                    </div>
+                )
+               
+            )}
         </div>
     )
     

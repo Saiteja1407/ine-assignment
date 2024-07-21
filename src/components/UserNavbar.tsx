@@ -41,8 +41,8 @@ const UserNavbar = () => {
   return (
     <div className='container bg-white mx-auto flex justify-between  p-3'>
          <div className='flex w-2/4 items-center justify-start '>
-            <Link to='/'>
-                <h1 className='brand-name text-xl md:text-3xl text-grey-900'>
+            <Link to='/user'>
+                <h1 className='brand-name  font-bold text-xl md:text-3xl text-grey-900'>
                     EDU@Home
                  </h1>
             </Link>           

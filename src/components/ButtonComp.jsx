@@ -1,10 +1,11 @@
 import React from 'react';
+import { Button } from '@mui/material';
 
 const ButtonComp = ({title}) => {
     return (
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">
+        <Button variant='contained'  color='secondary'>
             {title}
-        </button>
+        </Button>
     );
 };
 
