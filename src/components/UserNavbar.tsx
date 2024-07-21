@@ -26,7 +26,7 @@ const UserNavbar = () => {
     ]
 
     const handleLogout = async() => {  
-        const base_url = import.meta.env.VITE_API_URL;
+        const base_url = (import.meta as any).env.VITE_API_URL;
         const token =localStorage.getItem('token')
         console.log(token)
         const res = await axios.post(`${base_url}/api/auth/logout`,{},

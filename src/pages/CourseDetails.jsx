@@ -16,7 +16,6 @@ const CourseDetails = () => {
     const handleClick = async (e) => {
         const base_url = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
-        const navigate = useNavigate();
         const enrollingData = await axios.post(`${base_url}/api/enrollments`,{courseId:courseId},{
             headers:{
                 'Authorization':token
