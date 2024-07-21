@@ -31,6 +31,7 @@ const Login = () => {
                 const result = res.data;
                 if (result.success) {
                     try {
+                        input.email = input.email.trim();
                         const loginRes = await axios.post(`${base_url}/api/auth/login`, input);
                         localStorage.setItem('token', loginRes.data.token);
                         navigate(`/user`);

@@ -29,6 +29,7 @@ const SignUp = () => {
             const result = response.data;
             if(result.success){
                 try {
+                    input.email = input.email.trim();
                     const registerRes = await axios.post(`${base_url}/api/auth/register`, input);
                 
                     const data = registerRes.data;
