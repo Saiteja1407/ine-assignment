@@ -3,6 +3,7 @@ import './CourseDetails.css';
 import ButtonComp from '../components/ButtonComp';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import TopicInTable from '../components/TopicInTable';
 
 const CourseDetails = () => {
     const [isEnrolled, setIsEnrolled] = useState(false); 
@@ -95,8 +96,8 @@ const CourseDetails = () => {
 
     return (
         <>
-        <div className='outer-container mx-0 md:mx-4 lg:mx-8'>
-            <div className='bg-slate-100 text-start px-0 md:px-4 lg:px-8'>
+        <div className='outer-container mx-0 md:mx-8 lg:mx-16 my-4 lg:my-8'>
+            <div className='bg-slate-100 border lg:w-3/4 border-gray-200 rounded-2xl p-4 text-start  md:px-4 lg:px-8 my-4'>
                 <h1 id='course-title'>{courseData.title}</h1>
                 <p id='course-description'>{courseData.description}</p>
                 <h2 id='tutor'>Tutor: {courseData.instructor_name}</h2>
@@ -104,7 +105,8 @@ const CourseDetails = () => {
             </div>
         <div className='container w-full lg:w-3/4 rounded-2xl border-2 border-gray-200 overflow-hidden'>
         {topics.map(topic => (
-                <div key={topic.id}>
+            <>
+                {/* <div key={topic.id}>
                     <h2 className='bg-slate-100 border-b border-gray-300 py-2 px-4 lg:px-8'>{topic.title}</h2>
                     <ul>
                         {lessonsByTopic[topic.id] && lessonsByTopic[topic.id].map(lesson => (
@@ -112,7 +114,9 @@ const CourseDetails = () => {
                             
                         ))}
                     </ul>
-                </div>
+                </div> */}
+                 <TopicInTable topic={topic} lessonsByTopic={lessonsByTopic}/>
+                </>
             ))}
         </div>
             
