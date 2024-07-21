@@ -56,7 +56,7 @@ const SignUp = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen">
-            <div className="w-3/4 max-w-md">
+            <div className=" max-w-md">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                     <h2 className="text-2xl text-center font-bold mb-4">Sign Up</h2>
                     <div className="mb-4">
@@ -95,12 +95,13 @@ const SignUp = () => {
                             placeholder="Enter your password"
                         />
                     </div>
+                    <div>
+                        <ReCAPTCHA ref={recaptcha} sitekey={import.meta.env.VITE_API_SITE_KEY} />
+                    </div>
                     
-                    <ReCAPTCHA ref={recaptcha} sitekey={import.meta.env.VITE_API_SITE_KEY} />
-                    
-                    <div className="flex flex-col my-2 items-center justify-between">
+                    <div className="flex flex-col my-2  justify-between">
                         <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
                             type="submit"
                         >
                             Sign Up
@@ -109,7 +110,7 @@ const SignUp = () => {
                             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                             to="/login"
                         >
-                            Already have an account? Log in
+                            Already have an account?  Log in
                         </Link>
                     </div>
                 </form>

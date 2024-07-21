@@ -1,12 +1,25 @@
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const TopicInTable = ({topic,lessonsByTopic}) => {
+const TopicInTable = ({topic,lessonsByTopic,isEnrolled,courseId}) => {
     const [isOpen, setIsOpen] = React.useState(true);
+    const navigate = useNavigate();
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
+    }
+
+    const handleLinkClick = (lesson) =>{
+        if(isEnrolled==false){
+            alert('enroll to start learning!');
+            return;
+        }
+        
+        navigate(`/user/courses/${courseId}/${lesson.id}`)
+        
+        
     }
   return (
     <div key={topic.id}>

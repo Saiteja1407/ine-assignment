@@ -82,16 +82,7 @@ const CourseDetails = () => {
     
     const lessonsByTopic = groupLessonsByTopic(lessons);
 
-    const handleLinkClick = (lesson) =>{
-        if(isEnrolled==false){
-            alert('enroll to start learning!');
-            return;
-        }
-        else{
-            navigate(`/user/courses/${courseData.id}/${lesson.id}`)
-        }
-        
-    }
+   
 
 
     return (
@@ -115,7 +106,7 @@ const CourseDetails = () => {
                         ))}
                     </ul>
                 </div> */}
-                 <TopicInTable topic={topic} lessonsByTopic={lessonsByTopic}/>
+                 <TopicInTable topic={topic} lessonsByTopic={lessonsByTopic} isEnrolled={isEnrolled} courseId={courseData.id}/>
                 </>
             ))}
         </div>
