@@ -33,7 +33,7 @@ const SignUp = () => {
                 
                     const data = registerRes.data;
                     localStorage.setItem('token', registerRes.data.token);
-                    navigate(`/`);
+                    navigate(`/user`);
                 } catch (error) {
                     console.log(error.response.status)
                     if(error.response.status === 409){

@@ -1,0 +1,13 @@
+.brand-name{
+    color: #9c27b0;
+    transition: .5s ease-in-out;
+}
+
+.brand-name:hover{
+    text-shadow: 2px 2px 2px grey;
+}
+
+.login-button:hover{
+    background-color: purple;
+    color: white;
+}

@@ -22,7 +22,7 @@ const Menu = () => {
         }})
         localStorage.removeItem('token');
         alert('logout sucessful')
-        navigate('/login');
+        navigate('/');
     }
 
     return (
@@ -34,7 +34,7 @@ const Menu = () => {
                 <nav className='menu-container' style={{ transition: 'all .55s ease-in-out' }}>
                     <h2 onClick={toggleMenu} className='text-xl px-5 pt-5 pb-0' id='close'>X</h2>
                     <ul className='links-container'>
-                        <Link to='/profile/' >Profile</Link>
+                        <Link to='/user/profile/' >Profile</Link>
                         <div className='cursor-pointer' onClick={handleLogout} >Logout</div>
                     </ul>
                 </nav>

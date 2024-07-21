@@ -1,0 +1,33 @@
+.hamburger-menu-container {
+    position: relative;
+  }
+  
+  
+  
+  .hamburger-menu-content {
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    width: 16rem;
+    transition: transform 0.3s ease-in-out;
+    padding: 10px;
+  }
+  
+  .hamburger-menu-content * {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  *.hamburger-menu-content *:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .hamburger-menu-content *:last-child {
+    border-bottom: none;
+  }
+  

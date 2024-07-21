@@ -10,7 +10,7 @@ const CourseCard = ({ title, description, instructor_name, id }) => {
             <h2 className="course-name">{title}</h2>
             <p className="description">{description}</p>
             <p className="tutor-name">Tutor: {instructor_name}</p>
-            <Link to={`/courses/${id}`}>
+            <Link to={`/user/courses/${id}`}>
                 <ButtonComp title='Go To Course'/>
             </Link>
         </div>

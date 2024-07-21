@@ -16,6 +16,7 @@ const CourseDetails = () => {
     const handleClick = async (e) => {
         const base_url = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
+        const navigate = useNavigate();
         const enrollingData = await axios.post(`${base_url}/api/enrollments`,{courseId:courseId},{
             headers:{
                 'Authorization':token
@@ -24,6 +25,7 @@ const CourseDetails = () => {
         console.log(enrollingData.data);
         if(enrollingData.status==200){
             setIsEnrolled(true);
+            navigate(`/user/courses/${courseId}/${lessons[0].id}`);
         }
         else{
             alert("student enrollment failed");
@@ -86,7 +88,7 @@ const CourseDetails = () => {
             return;
         }
         else{
-            navigate(`/courses/${courseData.id}/${lesson.id}`)
+            navigate(`/user/courses/${courseData.id}/${lesson.id}`)
         }
         
     }
@@ -111,9 +113,8 @@ const CourseDetails = () => {
                 </div>
             ))}
         </div>
-        <span onClick={handleClick} className='button-gap'>
-                {isEnrolled ? <h4>Start Learning</h4>:<ButtonComp title='Enroll Now'/>}
-            </span>
+        {isEnrolled ? <h4>Start Learning</h4>:<span onClick={handleClick}><ButtonComp  title='Enroll Now'/></span>}
+            
         </div>
         </>
     );

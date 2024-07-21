@@ -121,7 +121,6 @@ const Catalog = () => {
             try {
                 const token = localStorage.getItem('token');
                 if (!token) {
-                    alert('unauthorized access , please signup/login')
                     navigate(`/signup`);
                 }
 

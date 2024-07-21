@@ -33,7 +33,7 @@ const Login = () => {
                     try {
                         const loginRes = await axios.post(`${base_url}/api/auth/login`, input);
                         localStorage.setItem('token', loginRes.data.token);
-                        navigate(`/`);
+                        navigate(`/user`);
                     } catch (error) {
                         console.log(error.response.status)
                         if(error.response.status === 401){
@@ -94,7 +94,7 @@ const Login = () => {
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                     >
-                        Sign In
+                        Login
                     </button>
                     </div>
                     <Link
