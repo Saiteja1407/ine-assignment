@@ -5,15 +5,17 @@ import axios from 'axios';
 import ButtonComp from '../components/ButtonComp';
 import InputComp from '../components/InputComp';
 import { useNavigate } from 'react-router-dom';
-import { Menu, MenuItem } from '@mui/material';
 import CategoryFilter from '../components/CategoryFilter';
 
 const Catalog = () => {
     const [loading, setLoading] = useState(true);
     const [courses, setCourses] = useState([]);
-    const [filteredCourses, setFilteredCourses] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [category, setCategory] = useState(null);
+    const [lastPage, setLastPage] = useState(false);
     const [categories, setCategories] = useState([]);
     const [query, setQuery] = useState('');
+    const itemsPerPage = 6;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,84 +24,92 @@ const Catalog = () => {
                 const token = localStorage.getItem('token');
                 if (!token) {
                     navigate(`/signup`);
+                    return;
                 }
 
                 const base_url = import.meta.env.VITE_API_URL;
                 const response = await axios.get(`${base_url}/api/courses`, {
+                    params: {
+                        page: currentPage,
+                        limit: itemsPerPage,
+                        category: category || undefined,
+                        search: query || undefined
+                    },
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+
+                const data = response.data;
+                console.log(data);
+                setCourses(data.data);
+                setLastPage(!data.hasMoreCourses);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchCourses();
+    }, [currentPage, category, query]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const base_url = import.meta.env.VITE_API_URL;
+                const response = await axios.get(`${base_url}/api/courses/categories`, {
                     headers: {
                         'Authorization': token
                     }
                 });
                 const data = response.data;
-                console.log(data.data);
-                setCourses(data.data);
-                setFilteredCourses(data.data);
-                setLoading(false);
-            } catch (error) { console.log(error)}
+                setCategories(data.categories);  
+            } catch (error) {
+                console.error(error);
+            }
         };
-        fetchCourses();
-    }, [navigate]);
+    
+        fetchCategories();
+    }, []);
+    
 
-    useEffect(() => {
-        const set = new Set();
-        courses.forEach((course) => {
-            set.add(course.category);
-        });
-        setCategories(Array.from(set));
-        console.log(categories.length > 0 && categories);
-    }, [courses]);
-
-    const handleCategory = (category) => {
-        const filtered = courses.filter(course => course.category === category);
-        setFilteredCourses(filtered);
+    const handleCategory = (selectedCategory) => {
+        setCategory(selectedCategory);
+        setCurrentPage(1); // Reset to the first page when the category changes
     };
 
-    const handleSearch = (query) => {
-        setQuery(query);
-        const filtered = courses.filter(course =>
-            course.title.toLowerCase().includes(query.toLowerCase()) ||
-            course.description.toLowerCase().includes(query.toLowerCase()) ||
-            course.instructor_name.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredCourses(filtered);
+    const handleSearch = (searchQuery) => {
+        setQuery(searchQuery);
+        setCurrentPage(1); // Reset to the first page when the search query changes
     };
 
     const handleClearFilter = () => {
-      setQuery('');
-      setFilteredCourses(courses);
-  };
-
+        setCategory(null);
+        setQuery('');
+        setCurrentPage(1); // Reset to the first page when filters are cleared
+    };
 
     return (
         <>
-            {loading ? (<h1>Loading</h1>) : (
+            {loading ? (<h1>Loading...</h1>) : (
                 <div>
                     <div className='search-container px-4 md:px-8 lg:px-20'>
-                        <InputComp width='20rem' placeholder='search here' query={query} setQuery={handleSearch} />
+                        <InputComp width='20rem' placeholder='Search here' query={query} setQuery={handleSearch} />
                         <CategoryFilter handleCategory={handleCategory} categories={categories} clearFilter={handleClearFilter}/>
-                        
-                        {/* <div className='filter-container'>
-                            {categories.length > 0 && categories.map((category, index) => (
-                                <span key={index} onClick={() => handleCategory(category)}>
-                                    <ButtonComp title={category} />
-                                </span>
-                            ))}
-                            <span onClick={handleClearFilter}>
-                            <ButtonComp title="Clear Filter"  />
-                            </span>
-                              
-                        </div> */}
+                    </div>
+                    <div className='course-catalog'>
+                        {courses.length > 0 ? courses.map((course, index) => (
+                            <CourseCard key={index} {...course} />
+                        )) : <p>No courses found.</p>}
+                    </div>
+                    <div className='my-5  mx-auto w-3/4 flex justify-center gap-28 '>
+                        <ButtonComp onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} title='Prev'/>
+                        <ButtonComp onClick={() => setCurrentPage(currentPage + 1)} disabled={lastPage} title='Next'/>
                     </div>
                 </div>
             )}
-            <div className='course-catalog'>
-                {filteredCourses.length > 0 && filteredCourses.map((course, index) => (
-                    <CourseCard key={index} {...course} />
-                ))}
-            </div>
         </>
     );
 };
 
 export default Catalog;
-

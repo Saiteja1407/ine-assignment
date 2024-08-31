@@ -12,6 +12,10 @@ import FormOuter from './components/FormOuter'
 import LandingPage from './pages/LandingPage'
 import Header from './components/Header'
 import CategoryFilter from './components/CategoryFilter'
+import Cart from './pages/Cart'
+import CheckOut from './pages/CheckOut'
+import PaymentComplete from './pages/PaymentComplete'
+import Test from './components/Test'
 
 function App() {
 
@@ -27,10 +31,13 @@ function App() {
           <Route index element={<Catalog/>}/>
           <Route path='/user/courses/:courseId' element={<CourseDetails/>}/>
           <Route path='/user/courses/:courseId/:lessonId' element={<Lesson/>}/>
-          <Route path='/user/profile' element={<ProfilePage/>}/>
+          <Route path='/user/enrolledcourses' element={<ProfilePage/>}/>
+          <Route path='/user/cart' element={<Cart/>}/>
+          <Route path='/user/checkout' element={<CheckOut/>}/>
+          <Route path='/user/complete' element={<PaymentComplete/>}/>
           <Route path='*' element={<NotFound/>}/>
           </Route>
-          <Route path='/components' element={<FormOuter/>}/>
+          <Route path='/components' element={<Test/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
-const CategoryFilter = ({clearFilter, categories, handleCategory}) => {
+const CategoryFilter = ({ clearFilter, categories = [], handleCategory }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleButtonClick = (event) => {
@@ -35,17 +35,22 @@ const CategoryFilter = ({clearFilter, categories, handleCategory}) => {
         open={open}
         onClose={handleMenuItemClick}
       >
-        {categories.length > 0 && categories.map((category, index) => (
-            <MenuItem key={index} onClick={() => handleMenuItemClick(()=>handleCategory(category)) }>
-                {category}
+        {categories.length > 0 ? (
+          categories.map((category, index) => (
+            <MenuItem
+              key={index}
+              onClick={() => handleMenuItemClick(() => handleCategory(category.category))}
+            >
+              {category.category}
             </MenuItem>
-        ))}
-        <MenuItem onClick={()=>handleMenuItemClick(clearFilter)}>Clear Filter</MenuItem>
+          ))
+        ) : (
+          <MenuItem disabled>No categories available</MenuItem>
+        )}
+        <MenuItem onClick={() => handleMenuItemClick(clearFilter)}>Clear Filter</MenuItem>
       </Menu>
     </div>
   );
 };
 
 export default CategoryFilter;
-
-

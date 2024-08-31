@@ -7,6 +7,7 @@ import './ProfilePage.css'
 const ProfilePage = () => {
     const [enrolledCourses,setEnrolledCourses] = useState([]);
     const [Loading,setLoading] = useState(true);
+    const [NoCourse,setNoCourse] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
@@ -22,6 +23,9 @@ const ProfilePage = () => {
                     'Authorization':token
                 }
             });
+            if(response.data.data.length === 0){
+                setNoCourse(true);
+            }
             setEnrolledCourses(response.data.data);
             setLoading(false);
         }
@@ -30,8 +34,12 @@ const ProfilePage = () => {
 
     
     return(
-        <div>
-            { Loading ? ( <h1>loading</h1> ): (
+        <>
+            { Loading ? ( <h1>loading</h1> ): NoCourse?(<div>
+                <h1 className='relative font-serif mt-9 -mb-9 z-10 text-center text-2xl md:text-3xl text-blue-700'>You are currently not enrolled in any course.</h1>
+                <img className='md:w-3/4 lg:w-1/2 mx-auto' src ='/nodata.jpg' alt='nodata'/>
+            </div>
+            ): (
                 enrolledCourses && enrolledCourses.length === 0 ? (<h1>You didn't enroll to any course yet.</h1>):(
                     <div className='items-center mt-4 lg:mt-8'>
                         <div className='w-fit m-auto text- '>
@@ -48,7 +56,7 @@ const ProfilePage = () => {
                 )
                
             )}
-        </div>
+        </>
     )
     
 }

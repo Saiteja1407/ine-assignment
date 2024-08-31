@@ -22,7 +22,8 @@ const UserNavbar = () => {
     const [theme, setTheme] = useState(false);
     const navigate = useNavigate();
     const Links = [
-        {name: 'Profile', path: '/user/profile'}
+        {name: 'Enrolled Courses', path: '/user/enrolledcourses'},
+        {name: 'Cart', path: '/user/cart'},
     ]
 
     const handleLogout = async() => {  
