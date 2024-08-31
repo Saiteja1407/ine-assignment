@@ -51,17 +51,24 @@ const Cart = () => {
 
   return (
     <div className='xl:px-20 my-5 lg:my-10'>
-     <h1 className='text-3xl lg:text-5xl m-3 font-semibold'>Cart</h1> 
-     { cartItems.length > 0 && cartItems.map((item) => {
+     {cartItems.length>0 &&(<h1 className='text-3xl lg:text-5xl m-3 font-semibold'>Cart</h1> )}
+     { cartItems.length > 0 ? cartItems.map((item) => {
          return <CartItem key={item.id} item={item} selectedCourses={selectedCourses} removeFromCart={removeFromCart} handleSelectCourses={handleSelectCourses}/>
-     })
-    }
+     }):( 
+        <>
+            <h1 className='text-center text-2xl md:text-5xl font-semibold text-blue-700'>Cart is empty</h1>
+            <img src='/noitems.png' alt='empty cart' className='w-1/2 mx-auto'/>
+        </>
+
+     )
+    }{cartItems.length>0 &&(
     <div className='mx-3 md:mx-5 lg:mt-6'>
         <h2 className='text-3xl my-2 font-semibold'>Total: ₹{total} </h2>
         <div onClick={handleCheckout}>
             <ButtonComp title='checkout' bsize='small'/>    
         </div>
     </div>
+    )}
     </div>
   )
 }

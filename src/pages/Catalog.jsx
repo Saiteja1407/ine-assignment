@@ -15,6 +15,7 @@ const Catalog = () => {
     const [lastPage, setLastPage] = useState(false);
     const [categories, setCategories] = useState([]);
     const [query, setQuery] = useState('');
+    const [debounceQuery, setDebounceQuery] = useState(query);
     const itemsPerPage = 6;
     const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const Catalog = () => {
                         page: currentPage,
                         limit: itemsPerPage,
                         category: category || undefined,
-                        search: query || undefined
+                        search: debounceQuery || undefined
                     },
                     headers: {
                         'Authorization': token
@@ -50,7 +51,7 @@ const Catalog = () => {
             }
         };
         fetchCourses();
-    }, [currentPage, category, query]);
+    }, [currentPage, category, debounceQuery]);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -72,6 +73,12 @@ const Catalog = () => {
         fetchCategories();
     }, []);
     
+    useEffect(()=>{
+        const debounceFn = setTimeout(() => {
+            setDebounceQuery(query);
+        },400)
+        return () => clearTimeout(debounceFn);
+    },[query])
 
     const handleCategory = (selectedCategory) => {
         setCategory(selectedCategory);
